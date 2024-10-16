@@ -12,3 +12,30 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+    id          String          @id         @default(uuid())
+    login       String          @unique
+    documents   Document[]
+
+    @@map("users")
+}
+
+model DocumentType {
+    id          String          @id         @default(uuid())
+    name        String
+    documents   Document[]
+
+    @@map("document_types")
+}
+
+model Document {
+    id          String          @id         @default(uuid())
+    name        String
+    author      User?           @relation(fields: [authorId], references: [id])
+    authorId    String?
+    type        DocumentType?   @relation(fields: [typeId], references: [id])
+    typeId      String?
+
+    @@map("documents")
+}
