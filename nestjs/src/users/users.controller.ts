@@ -8,8 +8,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get('/users')
-  getAll(): UserDTO[] {
-    const users: UserEntity[] = this.usersService.getAll();
+  async getAll(): Promise<UserDTO[]> {
+    const users: UserEntity[] = await this.usersService.getAll();
     return users.map<UserDTO>((entity) => UserDTO.fromEntity(entity));
   }
 }
