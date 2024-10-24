@@ -9,10 +9,6 @@ export class UserDTO {
     this.login = login;
   }
 
-  // Can be like this too:
-  // fromEntity = () => {
-  //
-  // }
   public static fromEntity(user: UserEntity): UserDTO {
     return new UserDTO(user.id, user.login);
   }
