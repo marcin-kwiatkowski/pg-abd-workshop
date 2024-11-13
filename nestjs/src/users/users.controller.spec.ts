@@ -2,6 +2,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { PrismaService } from '../prisma.service';
 import { UserEntity } from './entities/user.entity';
+import { CreateUserDTO } from './dtos/create-user.dto';
 
 describe('UsersController', () => {
   let usersController: UsersController;
@@ -38,19 +39,19 @@ describe('UsersController', () => {
     });
   });
 
-  // describe('createUser', () => {
-  //   it('should return id of a created user', async () => {
-  //     const userId = 'ID';
-  //     const user = new UserEntity(userId, '', 0);
-  //
-  //     jest
-  //       .spyOn(usersService, 'createUser')
-  //       .mockImplementation(() => Promise.resolve(user));
-  //
-  //     const payload = new CreateUserDTO('', '');
-  //     const createdUserDTO = await usersController.createUser(payload);
-  //     expect(createdUserDTO).toBeDefined();
-  //     expect(createdUserDTO.id).toEqual(userId);
-  //   });
-  // });
+  describe('createUser', () => {
+    it('should return id of a created user', async () => {
+      const userId = 'ID';
+      const user = new UserEntity(userId, '');
+
+      jest
+        .spyOn(usersService, 'createUser')
+        .mockImplementation(() => Promise.resolve(user));
+
+      const payload = new CreateUserDTO('');
+      const createdUserDTO = await usersController.createUser(payload);
+      expect(createdUserDTO).toBeDefined();
+      expect(createdUserDTO.id).toEqual(userId);
+    });
+  });
 });
