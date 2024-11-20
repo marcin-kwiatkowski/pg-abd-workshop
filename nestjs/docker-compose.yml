@@ -17,5 +17,13 @@ services:
     ports:
       - '9001:80'
 
+  api:
+    build:
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: 'postgresql://postgres:password@db:5432/abd?schema=public'
+    ports:
+      - '9010:3000'
+
 volumes:
   pgdata:
