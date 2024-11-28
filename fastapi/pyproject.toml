@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "ABD FastAPI"
+authors = ["Marcin Kwiatkowski"]
+description = ""
+version = "0.0.1"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+fastapi = "0.115.5"
+python = "3.11.3"
+uvicorn = "0.32.1"
